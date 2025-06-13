@@ -4,18 +4,25 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "tsx src/index.ts",
+    "migrate": "prisma migrate dev --schema=src/prisma/schema.prisma",
+    "migrate:create": "prisma migrate dev --create-only --schema=src/prisma/schema.prisma",
+    "generate": "prisma generate --schema=src/prisma/schema.prisma",
+    "studio": "prisma studio --schema=src/prisma/schema.prisma",
+    "seed": "tsx src/prisma/seed.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^24.0.1",
-    "prisma": "catalog:prisma",
+    "prisma": "^6.9.0",
     "tsx": "^4.20.2",
     "typescript": "^5.8.3"
   },
   "dependencies": {
-    "@prisma/client": "^6.9.0"
+    "@prisma/client": "^6.9.0",
+    "bcrypt": "^6.0.0"
   }
 }
