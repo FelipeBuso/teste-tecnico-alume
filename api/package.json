@@ -1,5 +1,5 @@
 {
-  "name": "teste-tecnico-alume",
+  "name": "api",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -9,8 +9,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "workspaces": [
-    "api/*",
-    "app/*"
-  ]
+  "devDependencies": {
+    "@types/node": "^24.0.1",
+    "prisma": "catalog:prisma",
+    "tsx": "^4.20.2",
+    "typescript": "^5.8.3"
+  }
 }
