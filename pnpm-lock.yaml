@@ -7,3 +7,27 @@ settings:
 importers:
 
   .: {}
+
+  apps/api:
+    dependencies:
+      '@prisma/client':
+        specifier: ^6.9.0
+        version: 6.9.0
+
+packages:
+
+  '@prisma/client@6.9.0':
+    resolution: {integrity: sha512-Gg7j1hwy3SgF1KHrh0PZsYvAaykeR0PaxusnLXydehS96voYCGt1U5zVR31NIouYc63hWzidcrir1a7AIyCsNQ==}
+    engines: {node: '>=18.18'}
+    peerDependencies:
+      prisma: '*'
+      typescript: '>=5.1.0'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
+      typescript:
+        optional: true
+
+snapshots:
+
+  '@prisma/client@6.9.0': {}

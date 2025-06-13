@@ -8,9 +8,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "workspaces": [
-    "api/*",
-    "app/*"
-  ]
+  "license": "ISC"
 }
