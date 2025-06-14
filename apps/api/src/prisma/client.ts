@@ -10,6 +10,7 @@ const prisma = new PrismaClient().$extends({
           quantidadeParcelas: true,
         },
         compute(data) {
+          console.log("Calculating monthly installment for data:", data);
           const pv = Number(data.valorTotal);
           const i = Number(data.jurosAoMes) / 100;
           const n = data.quantidadeParcelas;
