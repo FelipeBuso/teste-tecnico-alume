@@ -8,7 +8,10 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "types": ["node"]
+    "types": ["node", "./src/types/fastify.d.ts"],
   },
-  "include": ["src"]
+  "include": [
+    "src/**/*.ts",
+    "src/types/**/*.d.ts"
+  ]
 }
