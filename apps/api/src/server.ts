@@ -2,6 +2,8 @@ import Fastify from "fastify";
 import cors from "@fastify/cors";
 import authPlugin from "./plugins/auth";
 import studentsRoutes from "./modules/student/student.routes";
+import simulationRoutes from "./modules/simulation/simulation.routes";
+import "dotenv/config";
 
 async function buildApp() {
   const app = Fastify({ logger: true });
@@ -11,6 +13,7 @@ async function buildApp() {
   await app.register(
     async (apiApp) => {
       await apiApp.register(studentsRoutes);
+      await apiApp.register(simulationRoutes, { prefix: "/simulations" });
     },
     { prefix: "/api" }
   );

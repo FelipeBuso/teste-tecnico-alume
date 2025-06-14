@@ -15,12 +15,9 @@ export async function loginStudentHandler(
   reply: FastifyReply
 ) {
   const { email, senha } = request.body as any;
-  try {
-    const token = await loginStudent(request.server, email, senha);
-    return reply.send({ accessToken: token });
-  } catch (error) {
-    return reply.status(404).send({ message: "E-mail ou senha inválidos" });
-  }
+
+  const token = await loginStudent(request.server, email, senha);
+  return reply.send({ accessToken: token });
 }
 
 export async function getMeHandler(
