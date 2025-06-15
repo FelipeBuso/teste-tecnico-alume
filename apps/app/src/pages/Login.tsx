@@ -2,6 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAuth } from "../context/authContext";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object({
   email: yup.string().email().required("Email obrigatório"),
@@ -11,6 +12,7 @@ const schema = yup.object({
 type LoginForm = yup.InferType<typeof schema>;
 
 export default function Login() {
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -83,6 +85,16 @@ export default function Login() {
               <p className="text-sm text-red-500">{errors.senha?.message}</p>
             </div>
           </div>
+          <p className="text-sm text-center mt-4">
+            Não tem uma conta?{" "}
+            <button
+              type="button"
+              onClick={() => navigate("/register")}
+              className="text-indigo-600 underline"
+            >
+              Cadastre-se
+            </button>
+          </p>
 
           <div>
             <button
