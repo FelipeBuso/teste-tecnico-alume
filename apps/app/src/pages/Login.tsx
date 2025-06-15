@@ -74,12 +74,13 @@ export default function Login() {
               <input
                 {...register("senha")}
                 id="password"
-                name="password"
+                name="senha"
                 type="password"
                 required
                 autoComplete="current-password"
                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
               />
+              <p className="text-sm text-red-500">{errors.senha?.message}</p>
             </div>
           </div>
 

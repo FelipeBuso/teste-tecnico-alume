@@ -21,7 +21,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const navigate = useNavigate();
   const [user, setUser] = useState<User | null>(null);
 
-  const isAuthenticated = !!user;
+  const isAuthenticated = user ? true : false;
 
   const urlApi = import.meta.env.VITE_API_URL;
 
@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   const login = async (email: string, senha: string) => {
     const res = await axios.post(urlApi + "/login", { email, senha });
+
     localStorage.setItem("token", res.data.accessToken);
     setUser(res.data.user);
     navigate("/dashboard");

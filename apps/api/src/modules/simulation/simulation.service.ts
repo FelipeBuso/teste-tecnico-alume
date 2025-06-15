@@ -19,7 +19,6 @@ export async function createSimulation(
 }
 
 export async function listSimulations(estudanteId: number) {
-  console.log("Fetching simulations for student ID:", estudanteId);
   return prisma.simulacaoFinanciamento.findMany({
     where: { estudanteId },
     orderBy: { dataCriacao: "desc" },

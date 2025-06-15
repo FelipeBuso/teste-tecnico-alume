@@ -40,7 +40,13 @@ export async function loginStudent(
     throw new Error("Invalid credentials");
   }
 
-  return fastify.jwt.sign({ sub: student.id });
+  return {
+    accessToken: fastify.jwt.sign({ sub: student.id }),
+    user: {
+      nome: student.nome + " " + student.sobrenome,
+      email: student.email,
+    },
+  };
 }
 
 export async function getStudentById(id: number) {

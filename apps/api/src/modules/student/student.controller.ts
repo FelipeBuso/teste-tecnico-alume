@@ -16,8 +16,8 @@ export async function loginStudentHandler(
 ) {
   const { email, senha } = request.body as any;
 
-  const token = await loginStudent(request.server, email, senha);
-  return reply.send({ accessToken: token });
+  const res = await loginStudent(request.server, email, senha);
+  return reply.send(res);
 }
 
 export async function getMeHandler(
