@@ -17,8 +17,8 @@ export default function Sidebar() {
             key={link.to}
             to={link.to}
             className={({ isActive }) =>
-              `block px-3 py-2 rounded hover:bg-blue-700 ${
-                isActive ? "bg-blue-700 font-semibold" : ""
+              `block px-3 py-2 rounded hover:bg-indigo-700 ${
+                isActive ? "bg-indigo-600 font-semibold" : ""
               }`
             }
           >
