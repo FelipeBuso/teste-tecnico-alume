@@ -4,6 +4,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { apiAxios } from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import { InputController } from "../../components/form/inputContoller";
 
 const schema = yup.object({
   nome: yup.string().required("Nome é obrigatório"),
@@ -54,67 +55,48 @@ export default function Register() {
           Cadastro de Estudante
         </h2>
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium">Nome</label>
-            <input
-              {...register("nome")}
-              className="mt-1 w-full border rounded px-3 py-2 text-sm"
-            />
-            {errors.nome && (
-              <p className="text-red-500 text-xs">{errors.nome.message}</p>
-            )}
-          </div>
+          <InputController
+            register={register}
+            label="Nome"
+            name="nome"
+            id="nome"
+            errors={errors}
+          />
 
-          <div>
-            <label className="block text-sm font-medium">Sobrenome</label>
-            <input
-              {...register("sobrenome")}
-              className="mt-1 w-full border rounded px-3 py-2 text-sm"
-            />
-            {errors.sobrenome && (
-              <p className="text-red-500 text-xs">
-                {errors.sobrenome?.message}
-              </p>
-            )}
-          </div>
+          <InputController
+            register={register}
+            label="Sobrenome"
+            name="sobrenome"
+            id="sobrenome"
+            errors={errors}
+          />
 
-          <div>
-            <label className="block text-sm font-medium">Email</label>
-            <input
-              type="email"
-              {...register("email")}
-              className="mt-1 w-full border rounded px-3 py-2 text-sm"
-            />
-            {errors.email && (
-              <p className="text-red-500 text-xs">{errors.email.message}</p>
-            )}
-          </div>
+          <InputController
+            register={register}
+            label="E-mail"
+            name="email"
+            id="email"
+            type="email"
+            errors={errors}
+          />
 
-          <div>
-            <label className="block text-sm font-medium">Senha</label>
-            <input
-              type="password"
-              {...register("senha")}
-              className="mt-1 w-full border rounded px-3 py-2 text-sm"
-            />
-            {errors.senha && (
-              <p className="text-red-500 text-xs">{errors.senha.message}</p>
-            )}
-          </div>
+          <InputController
+            register={register}
+            label="Senha"
+            name="senha"
+            id="senha"
+            type="password"
+            errors={errors}
+          />
 
-          <div>
-            <label className="block text-sm font-medium">Confirmar Senha</label>
-            <input
-              type="password"
-              {...register("confirmarSenha")}
-              className="mt-1 w-full border rounded px-3 py-2 text-sm"
-            />
-            {errors.confirmarSenha && (
-              <p className="text-red-500 text-xs">
-                {errors.confirmarSenha.message}
-              </p>
-            )}
-          </div>
+          <InputController
+            register={register}
+            label="Confirmar Senha"
+            name="confirmarSenha"
+            id="confirmarSenha"
+            type="password"
+            errors={errors}
+          />
 
           <button
             type="submit"

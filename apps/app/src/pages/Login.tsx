@@ -3,6 +3,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
+import { InputController } from "../components/form/inputContoller";
 
 const schema = yup.object({
   email: yup.string().email().required("Email obrigatório"),
@@ -42,49 +43,24 @@ export default function Login() {
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm/6 font-medium text-gray-900"
-            >
-              E-mail
-            </label>
-            <div className="mt-2">
-              <input
-                {...register("email")}
-                id="email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
-              <p className="text-sm text-red-500">{errors.email?.message}</p>
-            </div>
-          </div>
+          <InputController
+            register={register}
+            label="E-mail"
+            name="email"
+            id="email"
+            type="email"
+            errors={errors}
+          />
 
-          <div>
-            <div className="flex items-center justify-between">
-              <label
-                htmlFor="password"
-                className="block text-sm/6 font-medium text-gray-900"
-              >
-                Senha
-              </label>
-            </div>
-            <div className="mt-2">
-              <input
-                {...register("senha")}
-                id="password"
-                name="senha"
-                type="password"
-                required
-                autoComplete="current-password"
-                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
-              />
-              <p className="text-sm text-red-500">{errors.senha?.message}</p>
-            </div>
-          </div>
+          <InputController
+            register={register}
+            label="Senha"
+            name="senha"
+            id="senha"
+            type="password"
+            errors={errors}
+          />
+
           <p className="text-sm text-center mt-4">
             Não tem uma conta?{" "}
             <button

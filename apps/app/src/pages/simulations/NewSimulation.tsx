@@ -3,20 +3,23 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { apiAxios } from "../../services/api";
 import { useNavigate } from "react-router-dom";
+import { InputController } from "../../components/form/inputContoller";
 
 const simulationSchema = yup.object({
   valorTotal: yup
     .number()
+    .min(1000, "Valor mínimo de R$ 1.000,00")
     .positive("Informe um valor positivo")
     .required("Valor total é obrigatório"),
   quantidadeParcelas: yup
     .number()
     .integer()
+    .min(2, "Quantidade mínima de parcelas é 2")
     .positive("Deve ser um número positivo")
     .required("Quantidade de parcelas é obrigatória"),
   jurosAoMes: yup
     .number()
-    .min(0, "Juros não pode ser negativo")
+    .min(1, "Juros não pode ser negativo")
     .required("Juros ao mês é obrigatório"),
 });
 
@@ -26,6 +29,7 @@ export default function NewSimulation() {
   const navigate = useNavigate();
   const {
     register,
+
     handleSubmit,
     formState: { errors, isSubmitting },
     watch,
@@ -71,70 +75,37 @@ export default function NewSimulation() {
   const valorParcela = calcularParcelaMensal();
 
   return (
-    <div className="max-w-3xl mx-auto p-6">
+    <div className="max-w-md mx-auto p-6">
       <h1 className="text-2xl font-bold mb-6">
         Nova Simulação de Financiamento
       </h1>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        <div>
-          <label
-            htmlFor="valorTotal"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Valor Total do Financiamento
-          </label>
-          <input
-            {...register("valorTotal")}
-            type="number"
-            step="0.01"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-          {errors.valorTotal && (
-            <p className="mt-1 text-sm text-red-600">
-              {errors.valorTotal.message}
-            </p>
-          )}
-        </div>
+        <InputController
+          register={register}
+          label="Valor Total"
+          name="valorTotal"
+          id="valorTotal"
+          type="number"
+          errors={errors}
+        />
+        <InputController
+          register={register}
+          label="Quantidade de Parcelas"
+          name="quantidadeParcelas"
+          id="quantidadeParcelas"
+          type="number"
+          errors={errors}
+        />
 
-        <div>
-          <label
-            htmlFor="quantidadeParcelas"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Quantidade de Parcelas
-          </label>
-          <input
-            {...register("quantidadeParcelas")}
-            type="number"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-          {errors.quantidadeParcelas && (
-            <p className="mt-1 text-sm text-red-600">
-              {errors.quantidadeParcelas.message}
-            </p>
-          )}
-        </div>
-
-        <div>
-          <label
-            htmlFor="jurosAoMes"
-            className="block text-sm font-medium text-gray-700"
-          >
-            Juros ao Mês (%)
-          </label>
-          <input
-            {...register("jurosAoMes")}
-            type="number"
-            step="0.01"
-            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-          />
-          {errors.jurosAoMes && (
-            <p className="mt-1 text-sm text-red-600">
-              {errors.jurosAoMes.message}
-            </p>
-          )}
-        </div>
+        <InputController
+          register={register}
+          label="Juros ao Mês (%)"
+          name="jurosAoMes"
+          id="jurosAoMes"
+          type="number"
+          errors={errors}
+        />
 
         <div className="mt-4">
           <p className="text-sm text-gray-700">

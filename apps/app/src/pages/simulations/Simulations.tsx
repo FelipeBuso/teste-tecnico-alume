@@ -109,19 +109,19 @@ export default function Simulations() {
               <tbody className="divide-y divide-gray-200">
                 {simulationList?.map((simulation) => (
                   <tr key={simulation.id}>
-                    <td className="py-4 pr-3 pl-4 text-sm font-medium whitespace-nowrap text-gray-900 sm:pl-0">
+                    <td className="py-4 pr-3 pl-4 text-sm  whitespace-nowrap text-gray-700 sm:pl-0">
                       {parseDateToLocaleString(simulation.dataCriacao)}
                     </td>
-                    <td className="px-3 text-right py-4 text-sm whitespace-nowrap text-gray-500">
+                    <td className="px-3 text-right py-4 text-sm whitespace-nowrap text-gray-700">
                       {parseStringToCurrency(simulation.valorTotal)}
                     </td>
-                    <td className="px-3 py-4 text-center text-sm whitespace-nowrap text-gray-500">
+                    <td className="px-3 py-4 text-center text-sm whitespace-nowrap text-gray-700">
                       {simulation.quantidadeParcelas}
                     </td>
-                    <td className="px-3 py-4 text-right text-sm whitespace-nowrap text-gray-500">
+                    <td className="px-3 py-4 text-right text-sm whitespace-nowrap text-gray-700">
                       {parseStringToPercentage(simulation.jurosAoMes)}
                     </td>
-                    <td className="px-3 py-4 text-right text-sm whitespace-nowrap text-gray-500">
+                    <td className="px-3 py-4 text-right text-sm whitespace-nowrap text-gray-700">
                       {parseStringToCurrency(
                         simulation.valorParcelaMensal.toString()
                       )}
@@ -139,9 +139,12 @@ export default function Simulations() {
       >
         <div className="hidden sm:block">
           <p className="text-sm text-gray-700">
-            Mostrando <span className="font-medium">1</span> de{" "}
-            <span className="font-medium">{currentPage}</span> de{" "}
-            <span className="font-medium">{totalCount}</span> resultados
+            Mostrando{" "}
+            <span className="font-medium">{pagination.start + 1}</span> de{" "}
+            <span className="font-medium">
+              {pagination.start + currentPage}
+            </span>{" "}
+            de <span className="font-medium">{totalCount}</span> resultados
           </p>
         </div>
         <div className="flex flex-1 justify-between sm:justify-end">
@@ -160,7 +163,7 @@ export default function Simulations() {
             Previous
           </button>
           <button
-            disabled
+            disabled={pagination.end >= totalCount}
             type="button"
             onClick={() => {
               console.log("Next page clicked");
