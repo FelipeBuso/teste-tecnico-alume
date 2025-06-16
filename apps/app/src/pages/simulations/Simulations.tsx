@@ -158,9 +158,9 @@ export default function Simulations() {
                 end: Math.max(prev.end - 10, 10),
               }));
             }}
-            className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-offset-0"
+            className="relative inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-offset-0  disabled:text-gray-400"
           >
-            Previous
+            Anterior
           </button>
           <button
             disabled={pagination.end >= totalCount}
@@ -172,9 +172,9 @@ export default function Simulations() {
                 end: prev.end + 10,
               }));
             }}
-            className="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-offset-0"
+            className="relative ml-3 inline-flex items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus-visible:outline-offset-0 disabled:text-gray-400"
           >
-            Next
+            Próximo
           </button>
         </div>
       </nav>

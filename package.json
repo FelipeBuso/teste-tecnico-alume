@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm run /^watch-.*/"
+    "dev:api": "pnpm --filter api run dev",
+    "dev:app": "pnpm --filter app run dev",
+    "dev": "pnpm run dev:api & pnpm run dev:app"
   },
   "keywords": [],
   "author": "",

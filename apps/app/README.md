@@ -1,54 +1,131 @@
-# React + TypeScript + Vite
+# Projeto de Simulações Financeiras
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Este projeto consiste em uma aplicação web para cadastro e gerenciamento de simulações financeiras, com backend em Fastify e frontend em React.
 
-Currently, two official plugins are available:
+## Tecnologias Utilizadas
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Backend
 
-## Expanding the ESLint configuration
+<img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" />
+PostgreSQL - Banco de dados relacional robusto e escalável
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+<img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg" />
+Prisma ORM - ORM para modelagem e acesso ao banco
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+<img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastify/fastify-original.svg" />
+Fastify - Framework Node.js rápido e eficiente para APIs REST
+
+### Frontend
+
+<img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" />
+React - Biblioteca para construção da interface do usuário
+
+<img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" />
+Vite - Bundler e dev server rápido para React
+
+<img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" />
+Tailwind CSS - Framework CSS utilitário para estilização
+
+📊 Recharts - Biblioteca para criação de gráficos<br/>
+🧩 React Hook Form - Gerenciamento simples e performático de formulários<br/>
+✔️ Yup - Validação de dados e esquemas
+
+### Gerenciamento de Pacotes e Workspaces
+
+<img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pnpm/pnpm-original.svg" />
+- 📦 PNPM - Gerenciador de pacotes eficiente com suporte a workspaces
+
+```bash
+npm install -g pnpm@latest-10
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Estrutura do Projeto
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `/api` - Backend construído com Fastify e Prisma
+- `/app` - Frontend construído com React, Vite, Tailwind CSS, React Hook Form e Recharts
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
+## 🛠️ Como Rodar o Projeto
+
+Siga os passos abaixo para executar o projeto localmente:
+
+### 1. Clone o repositório
+
+```bash
+git clone git@github.com:FelipeBuso/teste-tecnico-alume.git
+cd teste-tecnico-alume
 ```
+
+### 2. Instale as dependências
+
+```bash
+pnpm install
+```
+
+### 3. Suba o banco de dados PostgreSQL.
+
+```bash
+docker compose up -d
+```
+
+Isso criará e executará um container com PostgreSQL.
+
+### 4. Gere o Prisma Client
+
+```bash
+pnpm --filter api run generate
+```
+
+### 5. Execute as migrações no banco de dados
+
+```bash
+pnpm --filter api run migrate
+```
+
+Esse comando criará as tabelas no banco com base no schema do Prisma.
+
+### 6. (Opcional) Execute a seed para dados de teste
+
+```bash
+pnpm --filter api run seed
+```
+
+Esse comando irá popular o banco com dados fictícios úteis para testes.
+
+### 7. Inicie os serviços
+
+#### Backend (API)
+
+```bash
+pnpm --filter api run dev
+```
+
+#### Frontend (App)
+
+```bash
+pnpm --filter app run dev
+```
+
+#### Ambos
+
+```bash
+pnpm run dev
+```
+
+## 🚧 Melhorias Futuras
+
+- ✅ Implementar testes unitários e de integração na API (Fastify + Prisma)
+- ✅ Adicionar testes automatizados no frontend com ferramentas como:
+  - Vitest / Jest
+  - Testing Library
+  - Cypress (para testes end-to-end)
+- ✅ Implementar refresh token (atualmente só relogin)
+- ✅ Melhorar tratamento de erros e notificações no front
+- ✅ Validação mais robusta nos formulários
+- ✅ Responsividade e acessibilidade aprimoradas na interface
+
+### Screenshots
+
+![alt text](image.png)
+![alt text](image-3.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
