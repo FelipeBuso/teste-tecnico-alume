@@ -18,10 +18,24 @@ export async function createSimulation(
   });
 }
 
-export async function listSimulations(estudanteId: number) {
-  console.log("Fetching simulations for student ID:", estudanteId);
-  return prisma.simulacaoFinanciamento.findMany({
+export async function listSimulations(
+  estudanteId: number,
+  start: string,
+  end: string
+) {
+  const total = await prisma.simulacaoFinanciamento.count({
+    where: { estudanteId },
+  });
+  const skip = Number(start);
+  const take = Number(end) - skip;
+  const list = await prisma.simulacaoFinanciamento.findMany({
     where: { estudanteId },
     orderBy: { dataCriacao: "desc" },
+    skip,
+    take,
   });
+  return {
+    total,
+    list,
+  };
 }

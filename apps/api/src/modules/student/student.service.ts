@@ -40,7 +40,13 @@ export async function loginStudent(
     throw new Error("Invalid credentials");
   }
 
-  return fastify.jwt.sign({ sub: student.id });
+  return {
+    accessToken: fastify.jwt.sign({ sub: student.id }),
+    user: {
+      nome: student.nome + " " + student.sobrenome,
+      email: student.email,
+    },
+  };
 }
 
 export async function getStudentById(id: number) {
@@ -48,6 +54,21 @@ export async function getStudentById(id: number) {
     where: { id },
     select: {
       id: true,
+      nome: true,
+      sobrenome: true,
+      email: true,
+    },
+  });
+}
+
+export async function updateStudent(
+  id: number,
+  data: { nome: string; sobrenome: string; email: string }
+) {
+  return await prisma.estudante.update({
+    where: { id },
+    data,
+    select: {
       nome: true,
       sobrenome: true,
       email: true,

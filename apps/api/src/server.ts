@@ -23,10 +23,10 @@ async function buildApp() {
 
 async function start() {
   const app = await buildApp();
-
+  const port = Number(process.env.PORT) || 3333;
   try {
-    await app.listen({ port: 3333 });
-    console.log(`🚀 Server is running at http://localhost:3333`);
+    await app.listen({ port });
+    console.log(`🚀 Server is running at http://localhost:${port}`);
   } catch (err) {
     console.error(err);
     process.exit(1);

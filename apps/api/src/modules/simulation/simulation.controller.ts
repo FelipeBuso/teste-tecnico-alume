@@ -8,7 +8,6 @@ export async function createSimulationHandler(
 ) {
   try {
     const validatedData = await validateCreateSimulation(request.body);
-    console.log("Creating simulation with data:", validatedData);
     const studentId = request.user.sub;
     const simulation = await createSimulation(studentId, validatedData);
     return reply.status(201).send(simulation);
@@ -21,7 +20,10 @@ export async function listSimulationsHandler(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
+  const { start, end } = request.query as { start: string; end: string };
   const studentId = request.user.sub;
-  const simulations = await listSimulations(studentId);
-  return reply.send(simulations);
+  const { total, list } = await listSimulations(studentId, start, end);
+  reply.header("X-Total-Count", total);
+  reply.header("Access-Control-Expose-Headers", "X-Total-Count");
+  return reply.send(list);
 }

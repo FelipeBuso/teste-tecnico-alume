@@ -30,5 +30,8 @@
     "fastify": "^5.4.0",
     "fastify-plugin": "^5.0.1",
     "yup": "^1.6.1"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
