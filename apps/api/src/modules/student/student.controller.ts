@@ -38,7 +38,6 @@ export async function getMeHandler(
   request: FastifyRequest,
   reply: FastifyReply
 ) {
-  console.log("user:", request.user);
   const id = request.user.sub;
   const student = await getStudentById(id);
 
