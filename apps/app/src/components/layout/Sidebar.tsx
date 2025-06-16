@@ -1,5 +1,3 @@
-// src/components/layout/Sidebar.tsx
-// import { NavLink } from "react-router-dom";
 import { useState } from "react";
 import {
   Dialog,
@@ -14,17 +12,12 @@ import {
   UserIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 const navigation = [
-  { name: "Dashboard", href: "/dashboard", icon: HomeIcon, current: true },
-  {
-    name: "Simulações",
-    href: "/simulations",
-    icon: ListBulletIcon,
-    current: false,
-  },
-  { name: "Estudante", href: "/students", icon: UserIcon, current: false },
+  { name: "Dashboard", href: "/dashboard", icon: HomeIcon },
+  { name: "Simulações", href: "/simulations", icon: ListBulletIcon },
+  { name: "Estudante", href: "/students", icon: UserIcon },
 ];
 
 function classNames(...classes: (string | undefined | null | false)[]): string {
@@ -33,6 +26,8 @@ function classNames(...classes: (string | undefined | null | false)[]): string {
 
 export default function Sidebar() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const location = useLocation();
+
   return (
     <div>
       <Dialog
@@ -40,18 +35,12 @@ export default function Sidebar() {
         onClose={setSidebarOpen}
         className="relative z-50 lg:hidden"
       >
-        <DialogBackdrop
-          transition
-          className="fixed inset-0 bg-gray-900/80 transition-opacity duration-300 ease-linear data-closed:opacity-0"
-        />
+        <DialogBackdrop className="fixed inset-0 bg-gray-900/80 transition-opacity duration-300 ease-linear" />
 
         <div className="fixed inset-0 flex">
-          <DialogPanel
-            transition
-            className="relative mr-16 flex w-full max-w-xs flex-1 transform transition duration-300 ease-in-out data-closed:-translate-x-full"
-          >
+          <DialogPanel className="relative mr-16 flex w-full max-w-xs flex-1 transform transition duration-300 ease-in-out">
             <TransitionChild>
-              <div className="absolute top-0 left-full flex w-16 justify-center pt-5 duration-300 ease-in-out data-closed:opacity-0">
+              <div className="absolute top-0 left-full flex w-16 justify-center pt-5">
                 <button
                   type="button"
                   onClick={() => setSidebarOpen(false)}
@@ -69,31 +58,33 @@ export default function Sidebar() {
                 <ul role="list" className="flex flex-1 flex-col gap-y-7">
                   <li>
                     <ul role="list" className="-mx-2 space-y-1">
-                      {navigation.map((item) => (
-                        <li key={item.name}>
-                          <NavLink
-                            key={item.href}
-                            to={item.href}
-                            className={classNames(
-                              item.current
-                                ? "bg-gray-50 text-indigo-600"
-                                : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
-                              "group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold"
-                            )}
-                          >
-                            <item.icon
-                              aria-hidden="true"
+                      {navigation.map((item) => {
+                        const isActive = location.pathname === item.href;
+                        return (
+                          <li key={item.name}>
+                            <NavLink
+                              to={item.href}
                               className={classNames(
-                                item.current
-                                  ? "text-indigo-600"
-                                  : "text-gray-400 group-hover:text-indigo-600",
-                                "size-6 shrink-0"
+                                isActive
+                                  ? "bg-gray-50 text-indigo-600"
+                                  : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
+                                "group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold"
                               )}
-                            />
-                            {item.name}
-                          </NavLink>
-                        </li>
-                      ))}
+                            >
+                              <item.icon
+                                aria-hidden="true"
+                                className={classNames(
+                                  isActive
+                                    ? "text-indigo-600"
+                                    : "text-gray-400 group-hover:text-indigo-600",
+                                  "size-6 shrink-0"
+                                )}
+                              />
+                              {item.name}
+                            </NavLink>
+                          </li>
+                        );
+                      })}
                     </ul>
                   </li>
                 </ul>
@@ -107,37 +98,39 @@ export default function Sidebar() {
       <div className="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-54 lg:flex-col">
         <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
           <div className="flex h-16 shrink-0 items-center">
-            <h1>Alume</h1>
+            <h1 className="text-lg font-bold">Alume</h1>
           </div>
           <nav className="flex flex-1 flex-col">
             <ul role="list" className="flex flex-1 flex-col gap-y-7">
               <li>
                 <ul role="list" className="-mx-2 space-y-1">
-                  {navigation.map((item) => (
-                    <li key={item.name}>
-                      <NavLink
-                        key={item.href}
-                        to={item.href}
-                        className={classNames(
-                          item.current
-                            ? "bg-gray-50 text-indigo-600"
-                            : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
-                          "group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold"
-                        )}
-                      >
-                        <item.icon
-                          aria-hidden="true"
+                  {navigation.map((item) => {
+                    const isActive = location.pathname === item.href;
+                    return (
+                      <li key={item.name}>
+                        <NavLink
+                          to={item.href}
                           className={classNames(
-                            item.current
-                              ? "text-indigo-600"
-                              : "text-gray-400 group-hover:text-indigo-600",
-                            "size-6 shrink-0"
+                            isActive
+                              ? "bg-gray-50 text-indigo-600"
+                              : "text-gray-700 hover:bg-gray-50 hover:text-indigo-600",
+                            "group flex gap-x-3 rounded-md p-2 text-sm/6 font-semibold"
                           )}
-                        />
-                        {item.name}
-                      </NavLink>
-                    </li>
-                  ))}
+                        >
+                          <item.icon
+                            aria-hidden="true"
+                            className={classNames(
+                              isActive
+                                ? "text-indigo-600"
+                                : "text-gray-400 group-hover:text-indigo-600",
+                              "size-6 shrink-0"
+                            )}
+                          />
+                          {item.name}
+                        </NavLink>
+                      </li>
+                    );
+                  })}
                 </ul>
               </li>
             </ul>
