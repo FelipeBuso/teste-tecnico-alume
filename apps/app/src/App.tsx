@@ -4,10 +4,11 @@ import AppLayout from "./components/layout/AppLayout";
 import { ProtectedRoute } from "./routes/ProtectedRoute";
 import "./index.css";
 import Dashboard from "./pages/Dashboard";
-import Students from "./pages/students/Students";
 import Simulations from "./pages/simulations/Simulations";
 import NewSimulation from "./pages/simulations/NewSimulation";
 import Register from "./pages/students/NewStudent";
+import StudentProfile from "./pages/students/Students";
+import EditStudent from "./pages/students/EditStudent";
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
         }
       >
         <Route path="dashboard" element={<Dashboard />} />
-        <Route path="students" element={<Students />} />
+        <Route path="students" element={<StudentProfile />} />
+        <Route path="students/edit" element={<EditStudent />} />
         <Route path="simulations" element={<Simulations />} />
         <Route path="simulations/new" element={<NewSimulation />} />
       </Route>

@@ -8,7 +8,6 @@ export async function createSimulationHandler(
 ) {
   try {
     const validatedData = await validateCreateSimulation(request.body);
-    console.log("Creating simulation with data:", validatedData);
     const studentId = request.user.sub;
     const simulation = await createSimulation(studentId, validatedData);
     return reply.status(201).send(simulation);
@@ -22,7 +21,6 @@ export async function listSimulationsHandler(
   reply: FastifyReply
 ) {
   const { start, end } = request.query as { start: string; end: string };
-  console.log("Listing simulations with pagination:", { start, end });
   const studentId = request.user.sub;
   const { total, list } = await listSimulations(studentId, start, end);
   reply.header("X-Total-Count", total);

@@ -8,3 +8,9 @@ export interface ISimulation {
   dataAtualizacao: Date;
   valorParcelaMensal: number;
 }
+
+export interface IStudent {
+  nome: string;
+  sobrenome: string;
+  email: string;
+}

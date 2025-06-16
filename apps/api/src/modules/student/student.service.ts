@@ -60,3 +60,18 @@ export async function getStudentById(id: number) {
     },
   });
 }
+
+export async function updateStudent(
+  id: number,
+  data: { nome: string; sobrenome: string; email: string }
+) {
+  return await prisma.estudante.update({
+    where: { id },
+    data,
+    select: {
+      nome: true,
+      sobrenome: true,
+      email: true,
+    },
+  });
+}
