@@ -2,25 +2,26 @@ import type {
   FieldErrors,
   UseFormRegister,
   FieldValues,
+  Path,
 } from "react-hook-form";
 
-type InputControllerProps = {
-  register: UseFormRegister<FieldValues>;
+type InputControllerProps<T extends FieldValues> = {
+  register: UseFormRegister<T>;
   label: string;
-  name: string;
+  name: Path<T>;
   id: string;
   type?: React.HTMLInputTypeAttribute;
-  errors: FieldErrors;
+  errors: FieldErrors<T>;
 };
 
-export const InputController: React.FC<InputControllerProps> = ({
+export const InputController = <T extends FieldValues>({
   register,
   label,
   name,
   id,
   type = "text",
   errors,
-}) => {
+}: InputControllerProps<T>) => {
   return (
     <div>
       <label

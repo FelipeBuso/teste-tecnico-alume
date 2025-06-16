@@ -2,16 +2,15 @@
 import { useAuth } from "../../context/authContext";
 
 export default function Header() {
-  const { user, logout } = useAuth();
+  const { logout } = useAuth();
 
   return (
-    <header className="h-16 bg-gray-400 shadow flex items-center justify-between px-6 ">
-      <h1 className="text-lg font-semibold">{user?.nome}</h1>
+    <header className="h-16 bg-indigo-600 shadow flex items-center justify-end px-6">
       <div className="relative group">
         <button
           type="button"
           onClick={logout}
-          className="font-medium text-sm cursor-pointer"
+          className="font-medium text-sm text-white cursor-pointer"
         >
           Sair
         </button>
