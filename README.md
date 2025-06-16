@@ -5,35 +5,48 @@ Este projeto consiste em uma aplicação web para cadastro e gerenciamento de si
 ## Tecnologias Utilizadas
 
 ### Backend
-
+<p>
 <img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" />
 PostgreSQL - Banco de dados relacional robusto e escalável
-
+</p>
+<p>
 <img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prisma/prisma-original.svg" />
 Prisma ORM - ORM para modelagem e acesso ao banco
-
+</p>
+<p>
 <img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/fastify/fastify-original.svg" />
 Fastify - Framework Node.js rápido e eficiente para APIs REST
+</p>
 
 ### Frontend
-
+<p>
 <img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" />
 React - Biblioteca para construção da interface do usuário
-
+</p>
+<p>
 <img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" />
 Vite - Bundler e dev server rápido para React
+</p>
 
+<p>
 <img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" />
 Tailwind CSS - Framework CSS utilitário para estilização
-
+</p>
+<p>
 📊 Recharts - Biblioteca para criação de gráficos<br/>
+</p>
+<p>
 🧩 React Hook Form - Gerenciamento simples e performático de formulários<br/>
+</p>
+<p>
 ✔️ Yup - Validação de dados e esquemas
+</p>
 
 ### Gerenciamento de Pacotes e Workspaces
-
+<p>
 <img loading="lazy" width="20" height="20" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pnpm/pnpm-original.svg" />
-- 📦 PNPM - Gerenciador de pacotes eficiente com suporte a workspaces
+PNPM - Gerenciador de pacotes eficiente com suporte a workspaces
+</p>
 
 ```bash
 npm install -g pnpm@latest-10
@@ -93,6 +106,7 @@ Esse comando irá popular o banco com dados fictícios úteis para testes.
 
 ### 7. Inicie os serviços
 
+#### Iniciando em separado
 #### Backend (API)
 
 ```bash
@@ -105,7 +119,7 @@ pnpm --filter api run dev
 pnpm --filter app run dev
 ```
 
-#### Ambos
+#### Iniciando ambos os seviços de uma vez
 
 ```bash
 pnpm run dev
